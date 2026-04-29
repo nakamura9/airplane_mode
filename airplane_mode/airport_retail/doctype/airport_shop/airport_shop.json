@@ -1,0 +1,120 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:shop_number",
+ "creation": "2026-04-29 15:13:38.935937",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "shop_details_section",
+  "shop_number",
+  "shop_name",
+  "column_break_ihmo",
+  "area_unit",
+  "area",
+  "section_break_lysl",
+  "current_lease",
+  "tenant",
+  "column_break_kqqj",
+  "lease_start_date",
+  "lease_expiry_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "shop_details_section",
+   "fieldtype": "Section Break",
+   "label": "Shop Details"
+  },
+  {
+   "fieldname": "shop_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Shop Number",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "shop_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Shop Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ihmo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "area_unit",
+   "fieldtype": "Link",
+   "label": "Area Unit",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "area",
+   "fieldtype": "Float",
+   "label": "Area"
+  },
+  {
+   "fieldname": "section_break_lysl",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "current_lease",
+   "fieldtype": "Link",
+   "label": "Current Lease",
+   "options": "Airport Shop Rental Contract"
+  },
+  {
+   "fetch_from": "current_lease.tenant",
+   "fieldname": "tenant",
+   "fieldtype": "Link",
+   "label": "Tenant",
+   "options": "Airport Tenant"
+  },
+  {
+   "fieldname": "column_break_kqqj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "current_lease.contract_start_date",
+   "fieldname": "lease_start_date",
+   "fieldtype": "Date",
+   "label": "Lease Start Date"
+  },
+  {
+   "fetch_from": "current_lease.contract_end_date",
+   "fieldname": "lease_expiry_date",
+   "fieldtype": "Date",
+   "label": "Lease Expiry Date"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-29 16:20:00.871782",
+ "modified_by": "Administrator",
+ "module": "Airport Retail",
+ "name": "Airport Shop",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,11 @@
+<div class="card shadow-sm mb-4 p-0">
+	<div class="card-body">
+		<h4  >{{ frappe.get_doc("Airplane", doc.airplane).airline }}</h4>
+		<p>
+			<span class="text-muted">{{doc.source_airport_code}}  &#8594; {{doc.destination_airport_code}}</span> <br />
+			<span>{{doc.date_of_departure.strftime("%d %M")}}, {{doc.time_of_departure}} | {{frappe.utils.format_duration(doc.duration)}} </span>
+		</p>
+		<a href="{{ doc.route }}" class="text-info">View Flight</a>
+	</div>
+</div>
+<!-- this is a sample default list template -->
