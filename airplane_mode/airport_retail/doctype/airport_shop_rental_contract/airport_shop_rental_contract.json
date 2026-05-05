@@ -10,13 +10,17 @@
   "contract_start_date",
   "contract_end_date",
   "active",
+  "status",
   "column_break_delb",
   "shop",
   "tenant",
   "financial_obligations_section",
   "monthly_rent",
   "column_break_ndzy",
-  "security_deposit"
+  "security_deposit",
+  "amended_from",
+  "payment_schedule_section",
+  "table_kyoi"
  ],
  "fields": [
   {
@@ -84,12 +88,45 @@
    "fieldname": "active",
    "fieldtype": "Check",
    "label": "Active"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "Pending",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Pending\nActive\nCancelled\nCompleted",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Airport Shop Rental Contract",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "payment_schedule_section",
+   "fieldtype": "Section Break",
+   "label": "Payment Schedule"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "table_kyoi",
+   "fieldtype": "Table",
+   "options": "Rental Payment Schedule Item"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2026-04-29 16:18:48.177888",
+ "modified": "2026-04-30 10:54:06.151757",
  "modified_by": "Administrator",
  "module": "Airport Retail",
  "name": "Airport Shop Rental Contract",
@@ -113,5 +150,22 @@
  "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Red",
+   "title": "Cancelled"
+  },
+  {
+   "color": "Orange",
+   "title": "Pending"
+  },
+  {
+   "color": "Blue",
+   "title": "Started"
+  },
+  {
+   "color": "Green",
+   "title": "Completed"
+  }
+ ]
 }

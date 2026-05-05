@@ -7,11 +7,11 @@ frappe.ui.form.on("Airport Rent Payment", {
 	},
     shop: function(frm) {
         console.log("called")
-        // frappe.call({
-        //     doc:frm.doc,
-        //     method: "get_rent_details"
-        // }).then(res => {
-        //     frm.set_value("amount_due", res.message)
-        // })
+        frappe.call({
+            doc:frm.doc,
+            method: "get_rent_details"
+        }).then(res => {
+            frm.set_value("amount_due", res.message)
+        })
     }
 });

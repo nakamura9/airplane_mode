@@ -9,6 +9,7 @@
   "shop_details_section",
   "shop_number",
   "shop_name",
+  "airport",
   "column_break_ihmo",
   "area_unit",
   "area",
@@ -87,12 +88,19 @@
    "fieldname": "lease_expiry_date",
    "fieldtype": "Date",
    "label": "Lease Expiry Date"
+  },
+  {
+   "fieldname": "airport",
+   "fieldtype": "Link",
+   "label": "Airport",
+   "options": "Airport",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-29 16:20:00.871782",
+ "modified": "2026-04-30 05:25:38.027713",
  "modified_by": "Administrator",
  "module": "Airport Retail",
  "name": "Airport Shop",
