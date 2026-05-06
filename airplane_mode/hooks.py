@@ -29,7 +29,7 @@ app_license = "mit"
 # app_include_js = "/assets/airplane_mode/js/airplane_mode.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/airplane_mode/css/airplane_mode.css"
+web_include_css = "/assets/airplane_mode/css/main.bundle.css"
 # web_include_js = "/assets/airplane_mode/js/airplane_mode.js"
 
 # include custom scss in every website theme (without file extension ".scss")
@@ -46,7 +46,9 @@ app_license = "mit"
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
-# doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
+# doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}'
+
+fixtures = ["Shop Type"]
 
 # Svg Icons
 # ------------------

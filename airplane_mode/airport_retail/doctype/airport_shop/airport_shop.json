@@ -9,6 +9,7 @@
   "shop_details_section",
   "shop_number",
   "shop_name",
+  "shop_type",
   "column_break_ihmo",
   "area_unit",
   "area",
@@ -17,7 +18,8 @@
   "tenant",
   "column_break_kqqj",
   "lease_start_date",
-  "lease_expiry_date"
+  "lease_expiry_date",
+  "route"
  ],
  "fields": [
   {
@@ -87,13 +89,26 @@
    "fieldname": "lease_expiry_date",
    "fieldtype": "Date",
    "label": "Lease Expiry Date"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route",
+   "read_only": 1
+  },
+  {
+   "fieldname": "shop_type",
+   "fieldtype": "Link",
+   "label": "Shop Type",
+   "options": "Shop Type"
   }
  ],
  "grid_page_length": 50,
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-29 16:20:00.871782",
- "modified_by": "Administrator",
+ "modified": "2026-05-05 09:37:42.875103",
+ "modified_by": "kandoroc@hotmail.com",
  "module": "Airport Retail",
  "name": "Airport Shop",
  "naming_rule": "By fieldname",
@@ -112,6 +127,7 @@
    "write": 1
   }
  ],
+ "route": "shops",
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",

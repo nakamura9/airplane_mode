@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    {{ include_style('main.bundle.css') }}
+</head>
+<body>
+    <h1>{{ title }}</h1>
+
+    <div class="jumbotron">
+        <h3 class="h3">Details</h3>
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr class="bg-primary text-white">
+                    <th>Property</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>Shop Name</b></td>
+                    <td>{{doc.shop_name}}</td>
+                </tr>
+                <tr>
+                    <td><b>Shop Number</b></td>
+                    <td>{{doc.shop_number}}</td>
+                </tr>
+                <tr>
+                    <td><b>Shop Area</b></td>
+                    <td>{{doc.area}} {{doc.area_unit}}</td>
+                </tr>
+                <tr>
+                    <td><b>Current Lease</b></td>
+                    <td>{{doc.current_lease or "N/A" }}</td>
+                </tr>
+                 <tr>
+                    <td><b>Current Tenant</b></td>
+                    <td>{{doc.tenant or "N/A" }}</td>
+                </tr>
+                 <tr>
+                    <td><b>Lease Expiry</b></td>
+                    <td>{{doc.lease_expiry_date or "N/A" }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/shop-rental-enquiry/new?shop_interested_in={{doc.name}}" class="btn btn-sm btn-primary">Apply for Lease</button>
+    </div>
+</body>
+</html>
