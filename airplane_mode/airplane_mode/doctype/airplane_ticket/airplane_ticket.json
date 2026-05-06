@@ -162,6 +162,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fetch_from": "flight.source_airport_gate",
    "fieldname": "source_airport_gate",
    "fieldtype": "Link",
@@ -173,7 +174,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-04-29 15:10:33.019867",
+ "modified": "2026-04-30 10:24:10.716015",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airplane Ticket",

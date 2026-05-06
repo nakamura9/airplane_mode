@@ -150,13 +150,14 @@ fixtures = ["Shop Type"]
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
+scheduler_events = {
 # 	"all": [
 # 		"airplane_mode.tasks.all"
 # 	],
-# 	"daily": [
-# 		"airplane_mode.tasks.daily"
-# 	],
+	"daily": [
+		"airplane_mode.airport_retail.schedules.contracts.update_contract_status",
+		"airplane_mode.airport_retail.schedules.rent.send_rent_reminders",
+	],
 # 	"hourly": [
 # 		"airplane_mode.tasks.hourly"
 # 	],
@@ -166,7 +167,7 @@ fixtures = ["Shop Type"]
 # 	"monthly": [
 # 		"airplane_mode.tasks.monthly"
 # 	],
-# }
+}
 
 # Testing
 # -------

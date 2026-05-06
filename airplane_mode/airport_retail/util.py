@@ -7,8 +7,8 @@ def get_current_lease(shop, date=None):
         date = frappe.utils.nowdate()
     leases = frappe.get_all("Airport Shop Rental Contract", filters={
         "shop": shop,
-        "contract_start_date": (">=", date),
-        "contract_end_date": ("<=", date),
+        "contract_start_date": ("<=", date),
+        "contract_end_date": (">=", date),
         "active": True
     })
     if not leases:
