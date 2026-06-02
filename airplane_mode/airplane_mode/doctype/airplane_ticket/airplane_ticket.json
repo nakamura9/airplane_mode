@@ -127,6 +127,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.flight",
    "fieldname": "add_ons_section",
    "fieldtype": "Section Break",
    "label": "Add Ons"
@@ -152,6 +153,7 @@
    "label": "Total Amount"
   },
   {
+   "depends_on": "eval:['Checked-In','Boarded'].includes(doc.status)",
    "fieldname": "seat",
    "fieldtype": "Data",
    "label": "Seat",
@@ -174,7 +176,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-04-30 10:24:10.716015",
+ "modified": "2026-04-30 11:24:10.716015",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airplane Ticket",

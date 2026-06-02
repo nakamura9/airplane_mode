@@ -29,7 +29,10 @@ app_license = "mit"
 # app_include_js = "/assets/airplane_mode/js/airplane_mode.js"
 
 # include js, css files in header of web template
-web_include_css = "/assets/airplane_mode/css/main.bundle.css"
+web_include_css = [
+	"/assets/airplane_mode/css/main.bundle.css",
+	"/assets/airplane_mode/css/airline.css",
+]
 # web_include_js = "/assets/airplane_mode/js/airplane_mode.js"
 
 # include custom scss in every website theme (without file extension ".scss")

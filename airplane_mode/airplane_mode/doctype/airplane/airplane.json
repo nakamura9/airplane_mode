@@ -40,6 +40,7 @@
    "fieldname": "initial_audit_completed",
    "fieldtype": "Check",
    "label": "Initial Audit Completed",
+   "description": "Check once the first safety audit has been signed off. Positive labels — not 'Disable audit' — make intent clear.",
    "permlevel": 1
   }
  ],

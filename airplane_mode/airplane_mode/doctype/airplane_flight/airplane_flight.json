@@ -143,6 +143,7 @@
    "options": "Airplane Flight Crew Item"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "source_airport_gate",
    "fieldtype": "Link",
    "label": "Source Airport Gate",
@@ -159,8 +160,8 @@
    "link_fieldname": "flight"
   }
  ],
- "modified": "2026-04-29 15:08:45.083337",
- "modified_by": "Administrator",
+ "modified": "2026-05-06 09:37:48.062098",
+ "modified_by": "kandoroc@hotmail.com",
  "module": "Airplane Mode",
  "name": "Airplane Flight",
  "naming_rule": "Expression",
@@ -229,5 +230,18 @@
  "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Blue",
+   "title": "Scheduled"
+  },
+  {
+   "color": "Green",
+   "title": "Completed"
+  },
+  {
+   "color": "Red",
+   "title": "Cancelled"
+  }
+ ]
 }

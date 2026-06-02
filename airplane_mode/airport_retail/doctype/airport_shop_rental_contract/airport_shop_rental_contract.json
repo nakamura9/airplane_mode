@@ -126,7 +126,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-04-30 10:54:06.151757",
+ "modified": "2026-05-06 10:22:18.633993",
  "modified_by": "Administrator",
  "module": "Airport Retail",
  "name": "Airport Shop Rental Contract",
@@ -143,11 +143,13 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "shop,monthly_rent",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [
@@ -167,5 +169,6 @@
    "color": "Green",
    "title": "Completed"
   }
- ]
+ ],
+ "title_field": "tenant"
 }

@@ -1,24 +1,247 @@
-{% extends "templates/web.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ doc.source_airport_code }} → {{ doc.destination_airport_code }} · Airplane Mode</title>
+  <link rel="stylesheet" href="/assets/airplane_mode/css/airline.css">
+</head>
+<body>
 
-{% block page_content %}
-<h1>{{ title }}</h1>
+<!-- NAVBAR -->
+<nav class="am-nav scrolled" id="am-nav">
+  <div class="am-nav__inner">
+    <a href="/" class="am-nav__logo" style="color:var(--sky);">
+      <span class="am-nav__logo-icon">✈</span> Airplane Mode
+    </a>
+    <ul class="am-nav__links">
+      <li><a href="/flights">All Flights</a></li>
+      <li><a href="/#destinations">Destinations</a></li>
+      <li><a href="/book-flight-ticket-web-form/new" class="am-nav__cta">Book Now</a></li>
+    </ul>
+  </div>
+</nav>
 
-<h3 class="h3">
-    Flight Details
-</h3>
 {% set airplane = frappe.get_doc("Airplane", doc.airplane) %}
+{% set airline_name = airplane.airline %}
+{% set duration_str = frappe.utils.format_duration(doc.duration) %}
 
-<ul>
-    <li><strong>Airline:</strong> {{airplane.airline}}</li>
-    <li>{{doc.source_airport_code}}  &#8594; {{doc.destination_airport_code}}</li>
-    <li>{{doc.date_of_departure.strftime("%Y-%m-%d")}}</li>
-    <li><strong>Duration</strong>: {{frappe.utils.format_duration(doc.duration)}}</li>
-</ul>
+<!-- FLIGHT HERO -->
+<div class="am-flight-hero">
+  <div class="am-flight-hero__bg" aria-hidden="true"></div>
+  <div class="am-container" style="width:100%;">
+    <div class="am-flight-hero__content">
 
-<a class="btn btn-info btn-lg" href="/book-flight-ticket-web-form/new?flight={{doc.name}}&flight_price=250">
-    Book Flight
-</a>
+      <div style="margin-bottom:.75rem;">
+        <a href="/flights" style="color:rgba(255,255,255,.6);font-size:.85rem;">← All Flights</a>
+      </div>
 
-{% endblock %}
+      <div style="font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:.7;margin-bottom:.75rem;">
+        {{ airline_name }}
+        &nbsp;·&nbsp;
+        <span class="am-badge am-badge--{{ doc.status|lower }}" style="font-size:.7rem;">{{ doc.status }}</span>
+      </div>
 
-<!-- this is a sample default web page template -->
+      <div class="am-flight-hero__route">
+        <div>
+          <div class="am-flight-hero__code">{{ doc.source_airport_code }}</div>
+          <div class="am-flight-hero__label">{{ doc.source_airport }}</div>
+        </div>
+        <div class="am-flight-hero__arrow">→</div>
+        <div>
+          <div class="am-flight-hero__code">{{ doc.destination_airport_code }}</div>
+          <div class="am-flight-hero__label">{{ doc.destination_airport }}</div>
+        </div>
+      </div>
+
+      <div class="am-flight-hero__meta">
+        <div class="am-flight-hero__meta-item">
+          📅 {{ doc.date_of_departure.strftime("%d %B %Y") }}
+        </div>
+        <div class="am-flight-hero__meta-item">
+          🕐 Departs {{ doc.time_of_departure }}
+        </div>
+        <div class="am-flight-hero__meta-item">
+          ⏱ {{ duration_str }}
+        </div>
+        {% if doc.source_airport_gate %}
+        <div class="am-flight-hero__meta-item">
+          🚪 Gate {{ doc.source_airport_gate }}
+        </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL BODY -->
+<section class="am-section am-section--mist" style="padding-top:2.5rem;">
+  <div class="am-container">
+    <div class="am-flight-detail-grid">
+
+      <!-- Left column: info cards -->
+      <div>
+
+        <!-- Flight details -->
+        <div class="am-info-card">
+          <div class="am-info-card__title">Flight Details</div>
+          <div class="am-info-row">
+            <span class="am-info-row__label">Flight ID</span>
+            <span class="am-info-row__value">{{ doc.name }}</span>
+          </div>
+          <div class="am-info-row">
+            <span class="am-info-row__label">Airline</span>
+            <span class="am-info-row__value">{{ airline_name }}</span>
+          </div>
+          <div class="am-info-row">
+            <span class="am-info-row__label">Aircraft</span>
+            <span class="am-info-row__value">{{ airplane.model }} ({{ airplane.name }})</span>
+          </div>
+          <div class="am-info-row">
+            <span class="am-info-row__label">Capacity</span>
+            <span class="am-info-row__value">{{ airplane.capacity }} seats</span>
+          </div>
+          <div class="am-info-row">
+            <span class="am-info-row__label">Duration</span>
+            <span class="am-info-row__value">{{ duration_str }}</span>
+          </div>
+          <div class="am-info-row">
+            <span class="am-info-row__label">Status</span>
+            <span class="am-info-row__value">
+              <span class="am-badge am-badge--{{ doc.status|lower }}">{{ doc.status }}</span>
+            </span>
+          </div>
+          {% if doc.source_airport_gate %}
+          <div class="am-info-row">
+            <span class="am-info-row__label">Departure Gate</span>
+            <span class="am-info-row__value">{{ doc.source_airport_gate }}</span>
+          </div>
+          {% endif %}
+        </div>
+
+        <!-- Departure -->
+        <div class="am-info-card">
+          <div class="am-info-card__title">Departure</div>
+          <div class="am-info-row">
+            <span class="am-info-row__label">Airport</span>
+            <span class="am-info-row__value">{{ doc.source_airport }}</span>
+          </div>
+          <div class="am-info-row">
+            <span class="am-info-row__label">IATA Code</span>
+            <span class="am-info-row__value">{{ doc.source_airport_code }}</span>
+          </div>
+          <div class="am-info-row">
+            <span class="am-info-row__label">Date</span>
+            <span class="am-info-row__value">{{ doc.date_of_departure.strftime("%A, %d %B %Y") }}</span>
+          </div>
+          <div class="am-info-row">
+            <span class="am-info-row__label">Time</span>
+            <span class="am-info-row__value">{{ doc.time_of_departure }}</span>
+          </div>
+        </div>
+
+        <!-- Arrival -->
+        <div class="am-info-card">
+          <div class="am-info-card__title">Arrival</div>
+          <div class="am-info-row">
+            <span class="am-info-row__label">Airport</span>
+            <span class="am-info-row__value">{{ doc.destination_airport }}</span>
+          </div>
+          <div class="am-info-row">
+            <span class="am-info-row__label">IATA Code</span>
+            <span class="am-info-row__value">{{ doc.destination_airport_code }}</span>
+          </div>
+        </div>
+
+        <!-- Map image -->
+        <div class="am-map">
+          <img
+            src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=900&q=60&auto=format&fit=crop"
+            alt="Route map background">
+          <span style="position:relative;z-index:2;font-size:1rem;">
+            🗺 {{ doc.source_airport_code }} → {{ doc.destination_airport_code }}
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Right column: booking card -->
+      <div>
+        <div class="am-booking-card">
+
+          {% if doc.status == 'Scheduled' %}
+
+          <div style="font-size:.75rem;color:var(--text-muted);margin-bottom:.25rem;text-transform:uppercase;letter-spacing:.5px;">Base fare from</div>
+          <div class="am-booking-card__price">$250</div>
+          <div class="am-booking-card__price-label">per person · taxes included</div>
+
+          <a href="/book-flight-ticket-web-form/new?flight={{ doc.name }}&flight_price=250"
+             class="am-btn am-btn--gold am-btn--lg">
+            Book This Flight
+          </a>
+          <a href="/book-flight-ticket-web-form/new?flight={{ doc.name }}&flight_price=250"
+             class="am-btn am-btn--outline">
+            Check Availability
+          </a>
+
+          <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);">
+            <div style="font-size:.75rem;color:var(--text-muted);margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.5px;">Included</div>
+            <ul style="list-style:none;padding:0;margin:0;font-size:.875rem;color:var(--text-muted);">
+              <li style="padding:.3rem 0;">✓ &nbsp;1 carry-on bag</li>
+              <li style="padding:.3rem 0;">✓ &nbsp;Seat selection</li>
+              <li style="padding:.3rem 0;">✓ &nbsp;Free cancellation (24h)</li>
+              <li style="padding:.3rem 0;">✓ &nbsp;Gate change notifications</li>
+            </ul>
+          </div>
+
+          {% elif doc.status == 'Completed' %}
+          <div style="text-align:center;padding:1rem 0;">
+            <div style="font-size:2.5rem;margin-bottom:.5rem;">✅</div>
+            <div style="font-weight:800;font-size:1.1rem;margin-bottom:.4rem;">Flight Completed</div>
+            <p style="font-size:.875rem;color:var(--text-muted);">This flight has already departed and landed.</p>
+            <a href="/flights" class="am-btn am-btn--outline" style="margin-top:1rem;">Browse Other Flights</a>
+          </div>
+          {% else %}
+          <div style="text-align:center;padding:1rem 0;">
+            <div style="font-size:2.5rem;margin-bottom:.5rem;">❌</div>
+            <div style="font-weight:800;font-size:1.1rem;margin-bottom:.4rem;">Flight Cancelled</div>
+            <p style="font-size:.875rem;color:var(--text-muted);">This flight has been cancelled. Please search for alternatives.</p>
+            <a href="/flights" class="am-btn am-btn--primary" style="margin-top:1rem;">Find Alternatives</a>
+          </div>
+          {% endif %}
+
+        </div>
+
+        <!-- Small promo card -->
+        <div class="am-info-card" style="margin-top:1.5rem;background:var(--sky-light);border-color:var(--sky);text-align:center;">
+          <div style="font-size:1.5rem;margin-bottom:.5rem;">🛍️</div>
+          <div style="font-weight:700;margin-bottom:.4rem;">Shop before you fly</div>
+          <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:1rem;">Browse duty-free and airport shops at {{ doc.source_airport }}.</p>
+          <a href="/shops" class="am-btn am-btn--primary" style="font-size:.85rem;padding:.5rem 1.2rem;">Explore Shops</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="am-footer">
+  <div class="am-container">
+    <div class="am-footer__bottom" style="border-top:none;padding-top:0;">
+      <span>© 2026 Airplane Mode by Goprime Systems.</span>
+      <a href="/flights">← All Flights</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('am-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+</script>
+
+</body>
+</html>

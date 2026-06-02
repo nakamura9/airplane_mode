@@ -8,5 +8,16 @@ frappe.ui.form.on("Airport Shop", {
                 "enabled": 1
             }
         })
+
+        frm.add_custom_button("Show Previous Tenants", () => {
+            
+            frappe.call({
+                method: "show_previous_tenants",
+                doc: frm.doc
+            }).then(res => {
+
+                frappe.msgprint(res.message)
+            })
+        }, "Actions")
     },
 });

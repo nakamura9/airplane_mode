@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airplane Mode — Book Flights</title>
+  <link rel="stylesheet" href="/assets/airplane_mode/css/airline.css">
+</head>
+<body>
+
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
+<nav class="am-nav" id="am-nav">
+  <div class="am-nav__inner">
+    <a href="/" class="am-nav__logo">
+      <span class="am-nav__logo-icon">✈</span> Airplane Mode
+    </a>
+    <ul class="am-nav__links">
+      <li><a href="/flights">Flights</a></li>
+      <li><a href="/flights#destinations">Destinations</a></li>
+      <li><a href="/shop-rental-enquiry/new">Retail</a></li>
+      <li><a href="/book-flight-ticket-web-form/new" class="am-nav__cta">Book Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="am-hero">
+  <div class="am-hero__bg" aria-hidden="true"></div>
+  <div class="am-container">
+    <div class="am-hero__content">
+      <div class="am-hero__eyebrow">
+        ✈ &nbsp;Your journey starts here
+      </div>
+      <h1 class="am-hero__title">
+        Fly anywhere,<br><span>effortlessly.</span>
+      </h1>
+      <p class="am-hero__sub">
+        Book flights to hundreds of destinations worldwide. Simple pricing, no hidden fees, real-time seat availability.
+      </p>
+
+      <!-- Search box -->
+      <form class="am-search" action="/flights" method="get">
+        <div class="am-search__group">
+          <label for="hs-from">From</label>
+          <input id="hs-from" name="from" type="text" placeholder="City or airport code">
+        </div>
+        <div class="am-search__group">
+          <label for="hs-to">To</label>
+          <input id="hs-to" name="to" type="text" placeholder="City or airport code">
+        </div>
+        <div class="am-search__group">
+          <label for="hs-date">Date</label>
+          <input id="hs-date" name="date" type="date">
+        </div>
+        <button type="submit" class="am-search__btn">Search Flights</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STAT BAR
+============================================================ -->
+<div class="am-stats">
+  <div class="am-container">
+    <div class="am-stats__grid">
+      <div>
+        <div class="am-stats__num">{{ total_flights or "500+" }}</div>
+        <div class="am-stats__label">Scheduled Flights</div>
+      </div>
+      <div>
+        <div class="am-stats__num">{{ total_airlines or "40+" }}</div>
+        <div class="am-stats__label">Airlines</div>
+      </div>
+      <div>
+        <div class="am-stats__num">{{ total_airports or "120+" }}</div>
+        <div class="am-stats__label">Airports Served</div>
+      </div>
+      <div>
+        <div class="am-stats__num">98%</div>
+        <div class="am-stats__label">On-time Rate</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     POPULAR DESTINATIONS
+============================================================ -->
+<section class="am-section" id="destinations">
+  <div class="am-container">
+    <div class="am-heading">
+      <div class="am-heading__eyebrow">Popular Routes</div>
+      <h2 class="am-heading__title">Where do you want to go?</h2>
+      <p class="am-heading__sub">Explore our most-booked destinations and find your next adventure.</p>
+    </div>
+
+    <div class="am-destinations">
+
+      <a href="/flights?to=NBO" class="am-dest-card">
+        <img class="am-dest-card__img"
+          src="https://images.unsplash.com/photo-1611348524140-53c9a25263d6?w=600&q=75&auto=format&fit=crop"
+          alt="Nairobi skyline" loading="lazy">
+        <div class="am-dest-card__overlay"></div>
+        <div class="am-dest-card__body">
+          <div class="am-dest-card__city">Nairobi</div>
+          <div class="am-dest-card__country">Kenya</div>
+          <div class="am-dest-card__price">From $249</div>
+        </div>
+      </a>
+
+      <a href="/flights?to=DXB" class="am-dest-card">
+        <img class="am-dest-card__img"
+          src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=75&auto=format&fit=crop"
+          alt="Dubai skyline" loading="lazy">
+        <div class="am-dest-card__overlay"></div>
+        <div class="am-dest-card__body">
+          <div class="am-dest-card__city">Dubai</div>
+          <div class="am-dest-card__country">UAE</div>
+          <div class="am-dest-card__price">From $399</div>
+        </div>
+      </a>
+
+      <a href="/flights?to=LHR" class="am-dest-card">
+        <img class="am-dest-card__img"
+          src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=600&q=75&auto=format&fit=crop"
+          alt="London Tower Bridge" loading="lazy">
+        <div class="am-dest-card__overlay"></div>
+        <div class="am-dest-card__body">
+          <div class="am-dest-card__city">London</div>
+          <div class="am-dest-card__country">United Kingdom</div>
+          <div class="am-dest-card__price">From $520</div>
+        </div>
+      </a>
+
+      <a href="/flights?to=JFK" class="am-dest-card">
+        <img class="am-dest-card__img"
+          src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=600&q=75&auto=format&fit=crop"
+          alt="New York City skyline" loading="lazy">
+        <div class="am-dest-card__overlay"></div>
+        <div class="am-dest-card__body">
+          <div class="am-dest-card__city">New York</div>
+          <div class="am-dest-card__country">USA</div>
+          <div class="am-dest-card__price">From $699</div>
+        </div>
+      </a>
+
+      <a href="/flights?to=SYD" class="am-dest-card">
+        <img class="am-dest-card__img"
+          src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&q=75&auto=format&fit=crop"
+          alt="Sydney Opera House" loading="lazy">
+        <div class="am-dest-card__overlay"></div>
+        <div class="am-dest-card__body">
+          <div class="am-dest-card__city">Sydney</div>
+          <div class="am-dest-card__country">Australia</div>
+          <div class="am-dest-card__price">From $890</div>
+        </div>
+      </a>
+
+      <a href="/flights?to=CDG" class="am-dest-card">
+        <img class="am-dest-card__img"
+          src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=75&auto=format&fit=crop"
+          alt="Paris Eiffel Tower" loading="lazy">
+        <div class="am-dest-card__overlay"></div>
+        <div class="am-dest-card__body">
+          <div class="am-dest-card__city">Paris</div>
+          <div class="am-dest-card__country">France</div>
+          <div class="am-dest-card__price">From $480</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY FLY WITH US
+============================================================ -->
+<section class="am-section am-section--mist">
+  <div class="am-container">
+    <div class="am-why-grid">
+      <div class="am-why-img">
+        <img
+          src="https://images.unsplash.com/photo-1540339832862-474599807836?w=900&q=80&auto=format&fit=crop"
+          alt="Airplane cabin interior"
+          loading="lazy">
+      </div>
+      <div>
+        <div class="am-heading" style="text-align:left; margin-bottom:1.5rem;">
+          <div class="am-heading__eyebrow">Why Airplane Mode</div>
+          <h2 class="am-heading__title" style="margin-bottom:.5rem;">Travel smarter,<br>arrive happier.</h2>
+        </div>
+        <ul class="am-why__list">
+          <li>Instant booking confirmation with e-ticket delivery</li>
+          <li>Real-time gate and departure updates via SMS and email</li>
+          <li>Flexible add-ons: extra baggage, priority boarding, meals</li>
+          <li>24/7 passenger support through our crew network</li>
+          <li>Best-price guarantee — we match lower fares found elsewhere</li>
+        </ul>
+        <a href="/flights" class="am-btn am-btn--primary am-btn--lg">Browse All Flights</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEATURES
+============================================================ -->
+<section class="am-section">
+  <div class="am-container">
+    <div class="am-heading">
+      <div class="am-heading__eyebrow">The Experience</div>
+      <h2 class="am-heading__title">Everything you need, nothing you don't.</h2>
+    </div>
+    <div class="am-features">
+      <div class="am-feature">
+        <div class="am-feature__icon">🛫</div>
+        <div class="am-feature__title">500+ Destinations</div>
+        <p class="am-feature__text">Connect to major hubs and regional airports across six continents.</p>
+      </div>
+      <div class="am-feature">
+        <div class="am-feature__icon">💺</div>
+        <div class="am-feature__title">Choose Your Seat</div>
+        <p class="am-feature__text">Pick window, aisle, or extra-legroom seats at booking time.</p>
+      </div>
+      <div class="am-feature">
+        <div class="am-feature__icon">🔔</div>
+        <div class="am-feature__title">Live Gate Alerts</div>
+        <p class="am-feature__text">Instant push notifications when your gate changes — never miss an update.</p>
+      </div>
+      <div class="am-feature">
+        <div class="am-feature__icon">🛍️</div>
+        <div class="am-feature__title">Airport Retail</div>
+        <p class="am-feature__text">Browse and reserve from our curated airport shops before you land.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+============================================================ -->
+<section class="am-section am-section--mist">
+  <div class="am-container">
+    <div class="am-heading">
+      <div class="am-heading__eyebrow">Passengers Love Us</div>
+      <h2 class="am-heading__title">What our travellers say</h2>
+    </div>
+    <div class="am-testimonials">
+      <div class="am-testimonial">
+        <div class="am-testimonial__stars">★★★★★</div>
+        <p class="am-testimonial__text">"The gate change notification saved me from missing my connection. Arrived at the new gate with 10 minutes to spare!"</p>
+        <div class="am-testimonial__author">
+          <img class="am-testimonial__avatar"
+            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&q=75&auto=format&fit=crop&crop=face"
+            alt="Amara Osei">
+          <div>
+            <div class="am-testimonial__name">Amara Osei</div>
+            <div class="am-testimonial__route">Nairobi → Dubai</div>
+          </div>
+        </div>
+      </div>
+      <div class="am-testimonial">
+        <div class="am-testimonial__stars">★★★★★</div>
+        <p class="am-testimonial__text">"Booking was seamless and the add-on pricing is completely transparent. No surprises at the airport."</p>
+        <div class="am-testimonial__author">
+          <img class="am-testimonial__avatar"
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&q=75&auto=format&fit=crop&crop=face"
+            alt="James Mburu">
+          <div>
+            <div class="am-testimonial__name">James Mburu</div>
+            <div class="am-testimonial__route">London → New York</div>
+          </div>
+        </div>
+      </div>
+      <div class="am-testimonial">
+        <div class="am-testimonial__stars">★★★★☆</div>
+        <p class="am-testimonial__text">"The airport retail section is a brilliant idea. Reserved a gift from the duty-free shop before I even boarded!"</p>
+        <div class="am-testimonial__author">
+          <img class="am-testimonial__avatar"
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&q=75&auto=format&fit=crop&crop=face"
+            alt="Priya Sharma">
+          <div>
+            <div class="am-testimonial__name">Priya Sharma</div>
+            <div class="am-testimonial__route">Dubai → Sydney</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA BANNER
+============================================================ -->
+<section class="am-section am-section--dark" style="background: linear-gradient(135deg,#0055b3,#003d80); text-align:center;">
+  <div class="am-container">
+    <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;margin-bottom:1rem;">Ready to take off?</h2>
+    <p style="opacity:.8;margin-bottom:2rem;font-size:1.05rem;">Find your flight, choose your seat, and board in minutes.</p>
+    <a href="/flights" class="am-btn am-btn--gold am-btn--lg">Search Flights Now</a>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="am-footer">
+  <div class="am-container">
+    <div class="am-footer__grid">
+      <div>
+        <div class="am-footer__brand-name">✈ Airplane Mode</div>
+        <p class="am-footer__brand-desc">Your trusted partner for seamless air travel. Book flights, manage your journey, and discover the world — all in one place.</p>
+        <div class="am-footer__social">
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">◎</a>
+        </div>
+      </div>
+      <div>
+        <div class="am-footer__col-title">Flights</div>
+        <ul class="am-footer__links">
+          <li><a href="/flights">Search Flights</a></li>
+          <li><a href="/book-flight-ticket-web-form/new">Book a Ticket</a></li>
+          <li><a href="/flights#destinations">Destinations</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="am-footer__col-title">Services</div>
+        <ul class="am-footer__links">
+          <li><a href="/shops">Airport Retail</a></li>
+          <li><a href="/shop-rental-enquiry/new">Shop Enquiry</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="am-footer__col-title">Company</div>
+        <ul class="am-footer__links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="am-footer__bottom">
+      <span>© 2026 Airplane Mode by Goprime Systems. All rights reserved.</span>
+      <span><a href="#">Terms</a> · <a href="#">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const nav = document.getElementById('am-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+</script>
+
+</body>
+</html>

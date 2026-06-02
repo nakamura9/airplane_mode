@@ -6,8 +6,6 @@ from frappe.model.document import Document
 
 
 class FlightPassenger(Document):
-	def before_save(self):
-		if self.first_name and self.last_name:
-			self.full_name = f"{self.first_name} {self.last_name}"
-		else:
-			self.full_name = self.first_name
+	# full_name is a virtual field — its value is computed from the Options
+	# f-string expression in the DocType definition; no controller logic needed.
+	pass

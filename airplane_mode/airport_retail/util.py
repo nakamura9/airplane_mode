@@ -21,6 +21,9 @@ def get_rent_due(lease):
     if isinstance(lease, str):
         lease = frappe.get_doc("Airport Shop Rental Contract", lease)
 
+    if not lease:
+        return 0
+
     total_due = lease.security_deposit
     months_since_contract_start = relativedelta(lease.contract_start_date, datetime.date.today()).months
     total_due += (lease.monthly_rent * months_since_contract_start)

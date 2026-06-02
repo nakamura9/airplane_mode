@@ -4,6 +4,8 @@ import frappe
 from frappe.query_builder import DocType
 
 def get_data(filters):
+	# frappe.errprint prints to both the browser console and the server log — handy for debugging
+	frappe.errprint(f"[revenue_by_airline] get_data called with filters={filters!r}")
 	airline_names = frappe.get_all("Airline", pluck="name")
 	airline_revenue_map = {i: 0 for i in airline_names} 
 	AirplaneTicket = DocType("Airplane Ticket")
@@ -48,18 +50,6 @@ def get_columns():
 def execute(filters=None):
 	columns = get_columns()
 	data = get_data(filters)
-	chart = {
-		"data": {
-			"labels": [i.airline for i in data],
-			"datasets":[ 
-				{	
-					"name": "Revenue",
-					"values": [i.revenue for i in data]
-				}
-			]
-		},
-		"type": "donut"
-	}
 	total = sum(i.revenue for i in data)
 	summary = [
 		{
@@ -71,4 +61,4 @@ def execute(filters=None):
         },
 	]
 
-	return columns, data, "", chart, summary
+	return columns, data, "", None, summary

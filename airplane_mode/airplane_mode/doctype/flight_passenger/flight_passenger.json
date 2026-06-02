@@ -33,7 +33,10 @@
   {
    "fieldname": "full_name",
    "fieldtype": "Data",
-   "label": "Full Name"
+   "label": "Full Name",
+   "is_virtual": 1,
+   "options": "f\"{doc.first_name} {doc.last_name}\" if doc.last_name else doc.first_name",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,

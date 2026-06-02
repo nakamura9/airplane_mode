@@ -2,6 +2,10 @@ import frappe
 from airplane_mode.airport_retail.util import get_rent_due
 
 def send_rent_reminders():
+    settings = frappe.get_single("Airport Retail Settings")
+    if not settings.enable_automated_rent_reminders:
+        return
+
     active_leases = frappe.get_all(
         "Airport Shop Rental Contract", 
         filters={

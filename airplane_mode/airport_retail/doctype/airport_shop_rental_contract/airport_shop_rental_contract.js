@@ -11,5 +11,14 @@ frappe.ui.form.on("Airport Shop Rental Contract", {
                 })
             }, "Actions")
         }
+
+        if(frm.doc.__islocal) {
+            frappe.db.get_doc("Airport Retail Settings", "Airport Retail Settings")
+                .then(res => {
+                    if(res.default_rent_for_shops)
+                        frm.set_value("monthly_rent", res.default_rent_for_shops);
+                })
+        }
+        
 	},
 });

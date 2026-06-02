@@ -7,6 +7,32 @@ from frappe.utils import flt
 import random
 import string
 
+
+@frappe.whitelist()
+def get_tickets_for_airline(airline):
+	"""Demo: dot-notation join — filter Airplane Ticket rows by a grandparent field.
+
+	frappe.get_all supports "child_table.fieldname" notation for automatic joins,
+	so there is no need for raw SQL.
+
+	  airline (Airline)
+	    └─ airplane (Airplane)
+	         └─ flight (Airplane Flight)
+	              └─ ticket (Airplane Ticket)  ← what we're querying
+
+	The filter "flight.airplane.airline" traverses two levels of Link fields.
+	"""
+	frappe.errprint(f"[airplane_ticket] get_tickets_for_airline called with airline={airline!r}")
+
+	tickets = frappe.get_all(
+		"Airplane Ticket",
+		filters={"flight.airplane.airline": airline},
+		fields=["name", "passenger", "status", "total_amount", "flight"],
+	)
+
+	frappe.errprint(f"[airplane_ticket] found {len(tickets)} tickets for {airline!r}")
+	return tickets
+
 class AirplaneTicket(Document):
 	def before_save(self):
 		self.set_seat_number()

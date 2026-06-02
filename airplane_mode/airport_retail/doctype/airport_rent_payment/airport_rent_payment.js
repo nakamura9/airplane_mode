@@ -5,11 +5,13 @@ frappe.ui.form.on("Airport Rent Payment", {
 	refresh(frm) {
 
 	},
-    shop: function(frm) {
-        console.log("called")
+    lease: function(frm) {
         frappe.call({
             doc:frm.doc,
-            method: "get_rent_details"
+            method: "get_rent_details",
+            args: {
+                lease: frm.doc.lease
+            }
         }).then(res => {
             frm.set_value("amount_due", res.message)
         })

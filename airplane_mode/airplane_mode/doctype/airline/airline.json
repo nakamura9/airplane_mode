@@ -11,7 +11,8 @@
   "customer_crae_number",
   "headquarters",
   "column_break_kmzk",
-  "website"
+  "website",
+  "description"
  ],
  "fields": [
   {
@@ -48,6 +49,12 @@
    "fieldtype": "Data",
    "label": "Website",
    "options": "URL"
+  },
+  {
+   "description": "Brief overview of the airline shown as a popover on this field label.",
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
   }
  ],
  "grid_page_length": 50,

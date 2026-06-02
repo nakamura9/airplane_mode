@@ -7,6 +7,41 @@
     {{ include_style('main.bundle.css') }}
 </head>
 <body>
+
+    <style>
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: .25rem;
+            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .btn-alt {
+            background-color: transparent;
+            color: #007bff;
+            padding: 0.5rem 1rem;
+            border-radius: .25rem;
+            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .jumbotron {
+            background-color: #efefef;
+            margin: 1rem;
+            border-radius: 0.25rem;
+            padding: 2rem;
+        }
+
+        h1 {
+            margin-left: 2rem;
+        }
+
+    </style>
+
     <h1>{{ title }}</h1>
 
     <div class="jumbotron">
@@ -45,7 +80,8 @@
                 </tr>
             </tbody>
         </table>
-        <a href="/shop-rental-enquiry/new?shop_interested_in={{doc.name}}" class="btn btn-sm btn-primary">Apply for Lease</button>
+        <a href="/shop-rental-enquiry/new?shop_interested_in={{doc.name}}" class="btn btn-sm btn-primary">Apply for Lease</a>
+        <a href="/shops" class="btn-alt">Shop List</a>
     </div>
 </body>
 </html>
